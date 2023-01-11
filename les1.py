@@ -19,3 +19,5 @@ chast = 13.1
 print(chast,type(chast))
 chast_ = 1324.5
 print(chast_,type(chast_))
+
+# проверка связи
