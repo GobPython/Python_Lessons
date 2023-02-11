@@ -1,21 +1,18 @@
-# Домашнее задание после Урока 28
-# Создать класс и вызвать пять объектов этого класса.
-class World:
-    def __init__(self, country, city, citizen):
-        self.country = country
-        self.city = city
-        self.citizen = citizen
-    def karta(self):
-        print('В городе ' + self.city + ' (' + self.country + ') проживает ' + str(self.citizen) + ' млн. жителей.')
+# Домашнее задание после Урока 29
+# Создайте класс на тему животных. В классе должен присутствовать конструктор не менее трёх методов.
+class Animals:
+    def __init__(self, type, area, size):
+        self.type = type
+        self.area = area
+        self.size = size
+    def first(self):
+        print('Вид животного: ' + self.type)
+    def second(self):
+        print('Место обитания: ' + self.area)
+    def third(self):
+        print('Популяция:' + str(self.size) + ' особей.')
 
-count1 = World("Беларусь", "Минск", 3)
-count2 = World('Россия', 'Москва', 10)
-count3 = World('Польша', 'Варшава', 11)
-count4 = World('Германия', 'Белрлин', 15)
-count5 = World('Россия', 'Новосибирск', 1)
-
-count1.karta()
-count2.karta()
-count3.karta()
-count4.karta()
-count5.karta()
+opisanie1 = Animals ('Кошка', 'везде, кроме крайнего Севера и Юга', 175468324)
+opisanie1.first()
+opisanie1.second()
+opisanie1.third()
