@@ -1,11 +1,11 @@
-# Домашнее задание после Урока 39
-# Вывести данные из таблицы, созданной на предыдущем уроке. Вывод всех данных из таблицы и вывод из таблицы данных подчиняющихся какому-то условию.
+# Домашнее задание после Урока 40
+# В вашей БД из предыдущего занятия удалите половину записей. А вторую половину измените.
 import sqlite3
 conn = sqlite3.connect('conference.db')
 curs = conn.cursor()
-curs.execute('''CREATE TABLE IF NOT  EXISTS Prepair ('Ф.И.О.' TEXT, 'Ученая степень' TEXT, 'Научное направление' TEXT, 'Место работы' TEXT, Кафедра TEXT, Должность TEXT, Страна TEXT, Город TEXT, Адрес TEXT, 'Рабочий телефон' TEXT, 'Адрес электронной почты' TEXT, 'Докладчик или Участник' BOOL, 'Дата рассылки приглашения' TEXT, 'Дата поступления заявки' TEXT, 'Тема доклада' TEXT, 'Отметка о поступлении тезисов' BOOL, 'Дата приезда' TEXT, 'Потребность в гостинице' BOOL, 'Дата отъезда' TEXT);''')
+curs.execute('''CREATE TABLE IF NOT EXISTS Prepair ('Ф.И.О.' TEXT, 'Ученая степень' TEXT, 'Научное направление' TEXT, 'Место работы' TEXT, Кафедра TEXT, Должность TEXT, Страна TEXT, Город TEXT, Адрес TEXT, 'Рабочий телефон' TEXT, 'Адрес электронной почты' TEXT, 'Докладчик или Участник' BOOL, 'Дата рассылки приглашения' TEXT, 'Дата поступления заявки' TEXT, 'Тема доклада' TEXT, 'Отметка о поступлении тезисов' BOOL, 'Дата приезда' TEXT, 'Потребность в гостинице' BOOL, 'Дата отъезда' TEXT);''')
 conn.commit()
-curs.execute('''CREATE TABLE IF NOT  EXISTS Conference ('Название конференции' TEXT, 'Дата проведения' TEXT, 'Место проведения' TEXT, Организаторы TEXT, 'Спонсоры' TEXT, 'Количество дней проведения конференции' NUMERIC, 'Количество участников' NUMERIC, 'Количество докладчиков' NUMERIC)''')
+curs.execute('''CREATE TABLE IF NOT EXISTS Conference ('Название конференции' TEXT, 'Дата проведения' TEXT, 'Место проведения' TEXT, Организаторы TEXT, 'Спонсоры' TEXT, 'Количество дней проведения конференции' NUMERIC, 'Количество участников' NUMERIC, 'Количество докладчиков' NUMERIC)''')
 conn.commit()
 # sql1 = '''INSERT INTO Prepair ('Ф.И.О.', 'Ученая степень', 'Научное направление', 'Место работы', Кафедра, Должность, Страна, Город, Адрес, 'Рабочий телефон', 'Адрес электронной почты', 'Докладчик или Участник', 'Дата рассылки приглашения', 'Дата поступления заявки', 'Тема доклада', 'Отметка о поступлении тезисов', 'Дата приезда', 'Потребность в гостинице', 'Дата отъезда') VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 # data1 = [
@@ -29,22 +29,34 @@ conn.commit()
 # ]
 # conn.executemany(sql2, data2)
 # conn.commit()
-zap1 = '''SELECT * FROM Prepair;'''
-curs.execute(zap1)
-vyb1 = curs.fetchall()
-print(vyb1, '\n')
-zap2 = '''SELECT * FROM Conference;'''
-curs.execute(zap2)
-vyb2 = curs.fetchall()
-print(vyb2, '\n')
-zap3 = '''SELECT * FROM Prepair WHERE Город = 'Гомель'; '''
-curs.execute(zap3)
-vyb3 = curs.fetchall()
-print(vyb3, '\n')
-zap4 = '''SELECT * FROM Conference WHERE "Количество дней проведения конференции"= "1"; '''
-curs.execute(zap4)
-vyb4 = curs.fetchall()
-print(vyb4, '\n')
+# zap1 = '''SELECT * FROM Prepair;'''
+# curs.execute(zap1)
+# vyb1 = curs.fetchall()
+# print(vyb1, '\n')
+# zap2 = '''SELECT * FROM Conference;'''
+# curs.execute(zap2)
+# vyb2 = curs.fetchall()
+# print(vyb2, '\n')
+# zap3 = '''SELECT * FROM Prepair WHERE Город = 'Гомель'; '''
+# curs.execute(zap3)
+# vyb3 = curs.fetchall()
+# print(vyb3, '\n')
+# zap4 = '''SELECT * FROM Conference WHERE "Количество дней проведения конференции"= "1"; '''
+# curs.execute(zap4)
+# vyb4 = curs.fetchall()
+# print(vyb4, '\n')
+zap5 = '''DELETE FROM Prepair WHERE Город = 'Гомель' OR Город = 'Кёльн' OR Город = 'Алматы';'''
+curs.execute(zap5)
+conn.commit()
+zap6 = '''DELETE FROM Conference WHERE "Количество докладчиков" BETWEEN 9 AND 16;'''
+curs.execute(zap6)
+conn.commit()
+zap7 = '''UPDATE Prepair SET "Потребность в гостинице" = "Нет" WHERE "Отметка о поступлении тезисов" = "0";'''
+curs.execute(zap7)
+conn.commit()
+zap8 = '''UPDATE Conference SET Спонсоры = "Отсутствуют" WHERE Организаторы = "ООО Рога и копыта";'''
+curs.execute(zap8)
+conn.commit()
 curs.close()
 conn.close()
 
