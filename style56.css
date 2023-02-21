@@ -1,0 +1,22 @@
+p {
+    width: 500px;
+    font-size: 20px;
+    text-align: center;
+}
+a {
+    font-size: 30px;
+}
+a:link {
+    color: blue;
+}
+a:visited {
+    color: #99ff99;
+}
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+a:active {
+    color: black;
+}
+
